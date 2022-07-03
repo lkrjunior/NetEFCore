@@ -5,6 +5,10 @@ VisualStudioVersion = 25.0.1700.5
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetEFCore.API", "NetEFCore.API\NetEFCore.API.csproj", "{DAF65D6A-3FD5-45D1-8FEE-4DBB9C09B8C4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetEFCore.Core", "NetEFCore.Core\NetEFCore.Core.csproj", "{6A7DED82-037D-4327-9969-120912CD4C3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetEFCore.Test", "NetEFCore.Test\NetEFCore.Test.csproj", "{3B82E020-F5DB-4227-A6B6-3AD20CD4B4D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{DAF65D6A-3FD5-45D1-8FEE-4DBB9C09B8C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAF65D6A-3FD5-45D1-8FEE-4DBB9C09B8C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAF65D6A-3FD5-45D1-8FEE-4DBB9C09B8C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A7DED82-037D-4327-9969-120912CD4C3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A7DED82-037D-4327-9969-120912CD4C3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A7DED82-037D-4327-9969-120912CD4C3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A7DED82-037D-4327-9969-120912CD4C3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B82E020-F5DB-4227-A6B6-3AD20CD4B4D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B82E020-F5DB-4227-A6B6-3AD20CD4B4D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B82E020-F5DB-4227-A6B6-3AD20CD4B4D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B82E020-F5DB-4227-A6B6-3AD20CD4B4D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
