@@ -1,0 +1,9 @@
+﻿Tool
+dotnet tool install --global dotnet-ef
+
+Create migrations and update (after model change)
+dotnet ef migrations add InitialCreation -p ../NetEFCore.Core/ -s ../NetEFCore.API/ --verbose
+dotnet ef migrations add InitialCreation -p ../NetEFCore.Core/ -s ../NetEFCore.API/
+dotnet ef migrations add InitialCreation
+dotnet ef database update
+dotnet ef database update -p ../NetEFCore.Core/ -s ../NetEFCore.API/ --verbose
