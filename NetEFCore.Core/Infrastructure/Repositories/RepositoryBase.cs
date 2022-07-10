@@ -21,22 +21,22 @@ namespace NetEFCore.Core.Infrastructure.Repositories
             _appDbContext.Set<T>().Remove(entity);
         }
 
-        public virtual async Task<T?> Get(int id)
+        public virtual async Task<T?> GetAsync(int id)
         {
             return await _appDbContext.Set<T>().FindAsync(id);
         }
 
-        public virtual async Task Insert(T entity)
+        public virtual async Task InsertAsync(T entity)
         {
             await _appDbContext.Set<T>().AddAsync(entity);
         }
 
-        public virtual async Task<IList<T>> List()
+        public virtual async Task<IList<T>> ListAsync()
         {
             return await _appDbContext.Set<T>().ToListAsync();
         }
 
-        public virtual async Task<IList<T>> List(Expression<Func<T, bool>> expression)
+        public virtual async Task<IList<T>> ListAsync(Expression<Func<T, bool>> expression)
         {
             return await _appDbContext.Set<T>().Where(expression).ToListAsync();
         }
