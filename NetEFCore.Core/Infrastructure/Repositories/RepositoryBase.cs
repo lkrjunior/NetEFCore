@@ -6,7 +6,7 @@ using NetEFCore.Core.Interfaces;
 
 namespace NetEFCore.Core.Infrastructure.Repositories
 {
-    public abstract class RepositoryBase<T> : IRepositoryBase<T>
+    public abstract class RepositoryBase<T>
         where T : class
     {
         private readonly AppDbContext _appDbContext;
