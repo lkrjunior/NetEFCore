@@ -23,9 +23,20 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Moq" Version="4.18.1" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="coverlet.msbuild" />
+    <None Remove="Infrastructure\" />
+    <None Remove="Infrastructure\Repositories\" />
+    <None Remove="Moq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Infrastructure\Repositories\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NetEFCore.Core\NetEFCore.Core.csproj" />
   </ItemGroup>
 </Project>

@@ -18,9 +18,9 @@ namespace NetEFCore.Core.Infrastructure.Repositories
             PessoaJuridicaRepository = pessoaJuridicaRepository;
         }
 
-        public async Task SaveAsync()
+        public async Task<int> SaveAsync()
         {
-            await _appDbContext.SaveChangesAsync();
+            return await _appDbContext.SaveChangesAsync();
         }
     }
 }

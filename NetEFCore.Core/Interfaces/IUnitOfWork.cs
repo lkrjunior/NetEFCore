@@ -7,7 +7,7 @@ namespace NetEFCore.Core.Interfaces
     {
         IRepositoryBase<PessoaFisica> PessoaFisicaRepository { get; }
         IRepositoryBase<PessoaJuridica> PessoaJuridicaRepository { get; }
-        Task SaveAsync();
+        Task<int> SaveAsync();
     }
 }
 

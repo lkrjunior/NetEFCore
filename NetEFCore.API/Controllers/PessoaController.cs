@@ -22,7 +22,7 @@ public class PessoaController : ControllerBase
 
         if (pessoa == default)
         {
-            NotFound();
+            return NotFound();
         }
 
         return Ok(pessoa);
@@ -35,7 +35,7 @@ public class PessoaController : ControllerBase
 
         if (pessoas == default)
         {
-            NotFound();
+            return NotFound();
         }
 
         return Ok(pessoas);
@@ -94,7 +94,7 @@ public class PessoaController : ControllerBase
 
         if (pessoas == default)
         {
-            NotFound();
+            return NotFound();
         }
 
         return Ok(pessoas);
@@ -106,7 +106,7 @@ public class PessoaController : ControllerBase
         var pessoa = await _unitOfWork.PessoaJuridicaRepository.GetAsync(id);
         if (pessoa == null)
         {
-            NotFound();
+            return NotFound();
         }
 
         _unitOfWork.PessoaJuridicaRepository.Delete(pessoa);

@@ -6,7 +6,7 @@ using NetEFCore.Core.Models;
 
 namespace NetEFCore.Core.Infrastructure.Data
 {
-    public class AppDbContext : DbContext, IAppDbContext, IDisposable
+    public class AppDbContext : DbContext, IDisposable
     {
         public AppDbContext(DbContextOptions<AppDbContext> dbContextOptions) : base(dbContextOptions)
         { }

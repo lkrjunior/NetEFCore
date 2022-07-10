@@ -24,8 +24,10 @@ static void ConfigureServices(WebApplicationBuilder builder)
     builder.Services.AddSwaggerGen();
 
     builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlite(builder.Configuration["DbConnectionString"]));
+
     builder.Services.AddScoped<IRepositoryBase<PessoaFisica>, PessoaFisicaRepository>();
     builder.Services.AddScoped<IRepositoryBase<PessoaJuridica>, PessoaJuridicaRepository>();
+
     builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 }
 

@@ -12,5 +12,6 @@ dotnet ef database update -p NetEFCore.Core/ -s NetEFCore.API/
 
 
 Test
-dotnet test NetEFCore.Test "--logger:trx;LogFileName=results.trx" /p:CollectCoverage=true /p:Exclude="[*]NetEFCore.Core.Infrastructure.*%2c[*]NetEFCore.Core.Interfaces.*" /p:CoverletOutputFormat=opencover%2ccobertura /p:ThresholdType=method /p:Threshold=80
 dotnet test NetEFCore.Test "--logger:trx;LogFileName=results.trx" /p:CollectCoverage=true /p:Exclude=[*]NetEFCore.Core.Infrastructure.*%2c[*]NetEFCore.Core.Interfaces.* /p:CoverletOutputFormat=opencover%2ccobertura /p:ThresholdType=method /p:Threshold=80
+dotnet test NetEFCore.Test "--logger:trx;LogFileName=results.trx" /p:CollectCoverage=true /p:Exclude="[*]NetEFCore.Core.Infrastructure.*%2c[*]NetEFCore.Core.Interfaces.*" /p:CoverletOutputFormat=opencover%2ccobertura /p:ThresholdType=method /p:Threshold=80
+dotnet test NetEFCore.Test "--logger:trx;LogFileName=results.trx" /p:CollectCoverage=true /p:Exclude="[*]NetEFCore.Core.Infrastructure.Data.*%2c[*]NetEFCore.Core.Interfaces.*%2c[*]NetEFCore.Core.Migrations.*" /p:CoverletOutputFormat=opencover%2ccobertura /p:ThresholdType=method /p:Threshold=80
