@@ -56,7 +56,7 @@ namespace NetEFCore.Test.Infrastructure.Repositories
             await unitOfWork.PessoaFisicaRepository.InsertAsync(pessoa);
             await unitOfWork.SaveAsync();
 
-
+            _mockPessoaFisicaRepository.Verify(x => x.InsertAsync(It.IsAny<PessoaFisica>()), Times.Once);
         }
     }
 }
