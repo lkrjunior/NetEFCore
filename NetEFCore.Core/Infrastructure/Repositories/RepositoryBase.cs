@@ -16,32 +16,32 @@ namespace NetEFCore.Core.Infrastructure.Repositories
             _appDbContext = appDbContext;
         }
 
-        public void Delete(T entity)
+        public virtual void Delete(T entity)
         {
             _appDbContext.Set<T>().Remove(entity);
         }
 
-        public async Task<T?> Get(int id)
+        public virtual async Task<T?> Get(int id)
         {
             return await _appDbContext.Set<T>().FindAsync(id);
         }
 
-        public async Task Insert(T entity)
+        public virtual async Task Insert(T entity)
         {
             await _appDbContext.Set<T>().AddAsync(entity);
         }
 
-        public async Task<IList<T>> List()
+        public virtual async Task<IList<T>> List()
         {
             return await _appDbContext.Set<T>().ToListAsync();
         }
 
-        public async Task<IList<T>> List(Expression<Func<T, bool>> expression)
+        public virtual async Task<IList<T>> List(Expression<Func<T, bool>> expression)
         {
             return await _appDbContext.Set<T>().Where(expression).ToListAsync();
         }
 
-        public void Update(T entity)
+        public virtual void Update(T entity)
         {
             _appDbContext.Entry(entity).State = EntityState.Modified;
         }
