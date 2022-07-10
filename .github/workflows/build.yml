@@ -49,7 +49,7 @@ jobs:
           dotnet restore NetEFCore.sln
           dotnet build NetEFCore.sln
           
-          dotnet test NetEFCore.Test "--logger:trx;LogFileName=results.trx" /p:CollectCoverage=true /p:Exclude=[*]ChallengeNet.Core.Infrastructure.*%2c[*]ChallengeNet.Core.Interfaces.* /p:CoverletOutputFormat=opencover%2ccobertura /p:ThresholdType=method /p:Threshold=80
+          dotnet test NetEFCore.Test "--logger:trx;LogFileName=results.trx" /p:CollectCoverage=true /p:Exclude="[*]NetEFCore.Core.Infrastructure.Data.*%2c[*]NetEFCore.Core.Interfaces.*%2c[*]NetEFCore.Core.Migrations.*" /p:CoverletOutputFormat=opencover%2ccobertura /p:ThresholdType=method /p:Threshold=80
           dotnet-coverage collect 'dotnet test' -f xml -o 'coverage.xml'
 
           .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
