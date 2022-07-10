@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.Extensions.Caching.Memory;
 using Moq;
 using NetEFCore.Core.Infrastructure.Data;
 using NetEFCore.Core.Infrastructure.Repositories;
@@ -12,6 +13,7 @@ namespace NetEFCore.Test.Infrastructure.Repositories
     public class UnitOfWorkTest
     {
         private Mock<AppDbContext> _mockAppDbContext;
+        private Mock<IMemoryCache> _mockMemoryCache;
         private Mock<DbSet<PessoaFisica>> _mockPessoaFisicas;
         private Mock<DbSet<PessoaJuridica>> _mockPessoaJuridicas;
         private Mock<IRepositoryBase<PessoaFisica>> _mockPessoaFisicaRepository;
@@ -20,8 +22,13 @@ namespace NetEFCore.Test.Infrastructure.Repositories
 
         public UnitOfWorkTest()
         {
+            //_mockMemoryCache = new Mock<IMemoryCache>();
+            //var dbContextOptions = new DbContextOptionsBuilder<AppDbContext>()
+            //    .UseMemoryCache(_mockMemoryCache.Object)
+            //    .Options;
+
             var dbContextOptions = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase(databaseName: "UnitTest")
+                .UseInMemoryDatabase("UnitTest")
                 .Options;
 
             _mockAppDbContext = new Mock<AppDbContext>(dbContextOptions);
