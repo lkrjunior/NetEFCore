@@ -20,7 +20,11 @@ namespace NetEFCore.Test.Infrastructure.Repositories
 
         public UnitOfWorkTest()
         {
-            _mockAppDbContext = new Mock<AppDbContext>();
+            var dbContextOptions = new DbContextOptionsBuilder<AppDbContext>()
+                .UseInMemoryDatabase(databaseName: "UnitTest")
+                .Options;
+
+            _mockAppDbContext = new Mock<AppDbContext>(dbContextOptions);
             _mockPessoaFisicas = new Mock<DbSet<PessoaFisica>>();
             _mockPessoaJuridicas = new Mock<DbSet<PessoaJuridica>>();
             _mockPessoaFisicaRepository = new Mock<IRepositoryBase<PessoaFisica>>();
