@@ -33,10 +33,12 @@
     <None Remove="Infrastructure\Repositories\" />
     <None Remove="Moq" />
     <None Remove="Microsoft.EntityFrameworkCore.InMemory" />
+    <None Remove="Service\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Infrastructure\" />
     <Folder Include="Infrastructure\Repositories\" />
+    <Folder Include="Service\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NetEFCore.Core\NetEFCore.Core.csproj" />
