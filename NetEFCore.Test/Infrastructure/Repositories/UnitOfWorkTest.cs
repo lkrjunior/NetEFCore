@@ -13,13 +13,10 @@ namespace NetEFCore.Test.Infrastructure.Repositories
     public class UnitOfWorkTest
     {
         private Mock<AppDbContext> _mockAppDbContext;
-        private Mock<IMemoryCache> _mockMemoryCache;
-        private Mock<DbSet<PessoaFisica>> _mockPessoaFisicas;
-        private Mock<DbSet<PessoaJuridica>> _mockPessoaJuridicas;
+        //private Mock<IMemoryCache> _mockMemoryCache;
         private Mock<IRepositoryBase<PessoaFisica>> _mockPessoaFisicaRepository;
         private Mock<IRepositoryBase<PessoaJuridica>> _mockPessoaJuridicaRepository;
-        private Mock<IUnitOfWork> _mockUnitOfWork;
-
+        
         public UnitOfWorkTest()
         {
             //_mockMemoryCache = new Mock<IMemoryCache>();
@@ -32,8 +29,6 @@ namespace NetEFCore.Test.Infrastructure.Repositories
                 .Options;
 
             _mockAppDbContext = new Mock<AppDbContext>(dbContextOptions);
-            _mockPessoaFisicas = new Mock<DbSet<PessoaFisica>>();
-            _mockPessoaJuridicas = new Mock<DbSet<PessoaJuridica>>();
             _mockPessoaFisicaRepository = new Mock<IRepositoryBase<PessoaFisica>>();
             _mockPessoaJuridicaRepository = new Mock<IRepositoryBase<PessoaJuridica>>();
         }

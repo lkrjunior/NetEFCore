@@ -9,69 +9,77 @@ namespace NetEFCore.API.Controllers;
 public class PessoaController : ControllerBase
 {
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IPessoaService<PessoaFisica> _pessoaService;
 
-    public PessoaController(IUnitOfWork unitOfWork)
+    public PessoaController(IUnitOfWork unitOfWork, IPessoaService<PessoaFisica> pessoaService)
     {
         _unitOfWork = unitOfWork;
+        _pessoaService = pessoaService;
     }
 
     [HttpGet("GetPessoaFisica")]
     public async Task<IActionResult> GetPessoaFisica(int id)
     {
-        var pessoa = await _unitOfWork.PessoaFisicaRepository.GetAsync(id);
+        var result = await _pessoaService.Get(id);
 
-        if (pessoa == default)
+        if (result.HasError)
         {
-            return NotFound();
+            return Problem(result.ErrorMessage, HttpContext.Request.Path, result.HttpStatusCode, result.ErrorTitle);
         }
 
-        return Ok(pessoa);
+        return Ok(result.Data ?? default);
     }
 
     [HttpGet("ListPessoaFisica")]
     public async Task<IActionResult> ListPessoaFisica()
     {
-        var pessoas = await _unitOfWork.PessoaFisicaRepository.ListAsync();
+        var result = await _pessoaService.List();
 
-        if (pessoas == default)
+        if (result.HasError)
         {
-            return NotFound();
+            return Problem(result.ErrorMessage, HttpContext.Request.Path, result.HttpStatusCode, result.ErrorTitle);
         }
 
-        return Ok(pessoas);
+        return Ok(result.Data ?? default);
     }
 
     [HttpDelete("DeletePessoaFisica")]
     public async Task<IActionResult> DeletePessoaFisica(int id)
     {
-        var pessoa = await _unitOfWork.PessoaFisicaRepository.GetAsync(id);
-        if (pessoa == default)
+        var result = await _pessoaService.Delete(id);
+
+        if (result.HasError)
         {
-            return NotFound();
+            return Problem(result.ErrorMessage, HttpContext.Request.Path, result.HttpStatusCode, result.ErrorTitle);
         }
 
-        _unitOfWork.PessoaFisicaRepository.Delete(pessoa);
-        await _unitOfWork.SaveAsync();
-
-        return Ok();
+        return Ok(result.Data ?? default);
     }
 
     [HttpPost("InsertPessoaFisica")]
     public async Task<IActionResult> InsertPessoaFisica(PessoaFisica pessoa)
     {
-        await _unitOfWork.PessoaFisicaRepository.InsertAsync(pessoa);
-        await _unitOfWork.SaveAsync();
+        var result = await _pessoaService.Insert(pessoa);
 
-        return Ok(pessoa);
+        if (result.HasError)
+        {
+            return Problem(result.ErrorMessage, HttpContext.Request.Path, result.HttpStatusCode, result.ErrorTitle);
+        }
+
+        return Ok(result.Data ?? default);
     }
 
     [HttpPost("UpdatePessoaFisica")]
     public async Task<IActionResult> UpdatePessoaFisica(PessoaFisica pessoa)
     {
-        _unitOfWork.PessoaFisicaRepository.Update(pessoa);
-        await _unitOfWork.SaveAsync();
+        var result = await _pessoaService.Update(pessoa);
 
-        return Ok(pessoa);
+        if (result.HasError)
+        {
+            return Problem(result.ErrorMessage, HttpContext.Request.Path, result.HttpStatusCode, result.ErrorTitle);
+        }
+
+        return Ok(result.Data ?? default);
     }
 
     [HttpGet("GetPessoaJuridica")]

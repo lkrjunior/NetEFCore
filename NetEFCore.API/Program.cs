@@ -3,8 +3,9 @@ using NetEFCore.Core.Infrastructure.Data;
 using NetEFCore.Core.Infrastructure.Repositories;
 using NetEFCore.Core.Interfaces;
 using NetEFCore.Core.Models;
+using NetEFCore.Core.Service;
 
-static void Main(string[] args)
+static void RunApp(string[] args)
 {
     var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +30,8 @@ static void ConfigureServices(WebApplicationBuilder builder)
     builder.Services.AddScoped<IRepositoryBase<PessoaJuridica>, PessoaJuridicaRepository>();
 
     builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+    builder.Services.AddScoped<IPessoaService<PessoaFisica>, PessoaFisicaService>();
 }
 
 static void Configure(WebApplication app)
@@ -46,4 +49,4 @@ static void Configure(WebApplication app)
     app.MapControllers();
 }
 
-Main(args);
+RunApp(args);
