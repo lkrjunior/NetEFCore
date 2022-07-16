@@ -13,8 +13,9 @@ namespace NetEFCore.Test.Service
     {
         private static IUnitOfWork GetUnitOfWork()
         {
+            var dbName = Guid.NewGuid().ToString();
             var dbContextOptions = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase("UnitTest")
+                .UseInMemoryDatabase(dbName)
                 .Options;
             var appDbContext = new AppDbContext(dbContextOptions);
 
@@ -309,6 +310,32 @@ namespace NetEFCore.Test.Service
             Assert.False(result.HasError);
             Assert.Equal(StatusCodes.Status200OK, result.HttpStatusCode);
             Assert.Equal(2, result.Data?.Count());
+
+            #endregion
+        }
+
+        [Fact]
+        public async Task ShouldDontListPessoaJuridicaWhenPessoaIsEmpty()
+        {
+            #region Arrange
+
+            var unitOfWork = GetUnitOfWork();
+
+            var service = new PessoaJuridicaService(unitOfWork);
+
+            #endregion
+
+            #region Act
+
+            var result = await service.ListAsync();
+
+            #endregion
+
+            #region Assert
+
+            Assert.True(result.HasError);
+            Assert.Equal(StatusCodes.Status404NotFound, result.HttpStatusCode);
+            Assert.NotNull(result.ErrorMessage);
 
             #endregion
         }

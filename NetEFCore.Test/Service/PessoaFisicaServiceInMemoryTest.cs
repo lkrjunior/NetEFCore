@@ -13,8 +13,9 @@ namespace NetEFCore.Test.Service
     {
         private static IUnitOfWork GetUnitOfWork()
         {
+            var dbName = Guid.NewGuid().ToString();
             var dbContextOptions = new DbContextOptionsBuilder<AppDbContext>()
-                .UseInMemoryDatabase("UnitTest")
+                .UseInMemoryDatabase(dbName)
                 .Options;
             var appDbContext = new AppDbContext(dbContextOptions);
 
