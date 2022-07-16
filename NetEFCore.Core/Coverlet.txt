@@ -1,0 +1,1 @@
+﻿dotnet test NetEFCore.Test "--logger:trx;LogFileName=results.trx" /p:CollectCoverage=true /p:Exclude="[*]NetEFCore.Core.Infrastructure.Data.*%2c[*]NetEFCore.Core.Interfaces.*%2c[*]NetEFCore.Core.Migrations.*" /p:CoverletOutputFormat=opencover%2ccobertura /p:ThresholdType=method /p:Threshold=80
