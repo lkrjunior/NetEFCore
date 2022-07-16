@@ -9,7 +9,7 @@ using NetEFCore.Core.Service;
 
 namespace NetEFCore.Test.Service
 {
-    public class PessoaFisicaServiceInMemoryTest
+    public class PessoaJuridicaServiceInMemoryTest
     {
         private static IUnitOfWork GetUnitOfWork()
         {
@@ -27,20 +27,20 @@ namespace NetEFCore.Test.Service
         }
 
         [Fact]
-        public async Task ShouldInsertPessoaFisicaWhenPayloadIsValid()
+        public async Task ShouldInsertPessoaJuridicaWhenPayloadIsValid()
         {
             #region Arrange
 
-            var entity = new PessoaFisica()
+            var entity = new PessoaJuridica()
             {
                 Name = "Name",
-                Cpf = "1",
-                BirthDate = new DateTime(1980, 1, 1)
+                Cnpj = "1",
+                RegisterDate = new DateTime(1980, 1, 1)
             };
 
             var unitOfWork = GetUnitOfWork();
 
-            var service = new PessoaFisicaService(unitOfWork);
+            var service = new PessoaJuridicaService(unitOfWork);
 
             #endregion
 
@@ -56,29 +56,29 @@ namespace NetEFCore.Test.Service
             Assert.Equal(StatusCodes.Status200OK, result.HttpStatusCode);
             Assert.True(entity.Id > 0);
             Assert.Equal(entity.Name, result.Data?.Name);
-            Assert.Equal(entity.Cpf, result.Data?.Cpf);
-            Assert.Equal(entity.BirthDate, result.Data?.BirthDate);
+            Assert.Equal(entity.Cnpj, result.Data?.Cnpj);
+            Assert.Equal(entity.RegisterDate, result.Data?.RegisterDate);
 
             #endregion
         }
 
         [Fact]
-        public async Task ShouldUpdatePessoaFisicaWhenPayloadIsValid()
+        public async Task ShouldUpdatePessoaJuridicaWhenPayloadIsValid()
         {
             #region Arrange
 
-            var entity = new PessoaFisica()
+            var entity = new PessoaJuridica()
             {
                 Name = "Name",
-                Cpf = "1",
-                BirthDate = new DateTime(1980, 1, 1)
+                Cnpj = "1",
+                RegisterDate = new DateTime(1980, 1, 1)
             };
 
-            var expectedCpf = "123";
+            var expectedCnpj = "123";
 
             var unitOfWork = GetUnitOfWork();
 
-            var service = new PessoaFisicaService(unitOfWork);
+            var service = new PessoaJuridicaService(unitOfWork);
 
             #endregion
 
@@ -86,7 +86,7 @@ namespace NetEFCore.Test.Service
 
             await service.InsertAsync(entity);
 
-            entity.Cpf = expectedCpf;
+            entity.Cnpj = expectedCnpj;
 
             var result = await service.UpdateAsync(entity);
 
@@ -98,27 +98,27 @@ namespace NetEFCore.Test.Service
             Assert.Equal(StatusCodes.Status200OK, result.HttpStatusCode);
             Assert.True(entity.Id > 0);
             Assert.Equal(entity.Name, result.Data?.Name);
-            Assert.Equal(expectedCpf, result.Data?.Cpf);
-            Assert.Equal(entity.BirthDate, result.Data?.BirthDate);
+            Assert.Equal(expectedCnpj, result.Data?.Cnpj);
+            Assert.Equal(entity.RegisterDate, result.Data?.RegisterDate);
 
             #endregion
         }
 
         [Fact]
-        public async Task ShouldDontUpdatePessoaFisicaWhenPayloadIsValid()
+        public async Task ShouldDontUpdatePessoaJuridicaWhenPayloadIsValid()
         {
             #region Arrange
 
-            var entity = new PessoaFisica()
+            var entity = new PessoaJuridica()
             {
                 Name = "Name",
-                Cpf = "1",
-                BirthDate = new DateTime(1980, 1, 1)
+                Cnpj = "1",
+                RegisterDate = new DateTime(1980, 1, 1)
             };
 
             var unitOfWork = GetUnitOfWork();
 
-            var service = new PessoaFisicaService(unitOfWork);
+            var service = new PessoaJuridicaService(unitOfWork);
 
             #endregion
 
@@ -136,20 +136,20 @@ namespace NetEFCore.Test.Service
         }
 
         [Fact]
-        public async Task ShouldDeletePessoaFisicaWhenPayloadIsValid()
+        public async Task ShouldDeletePessoaJuridicaWhenPayloadIsValid()
         {
             #region Arrange
 
-            var entity = new PessoaFisica()
+            var entity = new PessoaJuridica()
             {
                 Name = "Name",
-                Cpf = "1",
-                BirthDate = new DateTime(1980, 1, 1)
+                Cnpj = "1",
+                RegisterDate = new DateTime(1980, 1, 1)
             };
 
             var unitOfWork = GetUnitOfWork();
 
-            var service = new PessoaFisicaService(unitOfWork);
+            var service = new PessoaJuridicaService(unitOfWork);
 
             #endregion
 
@@ -171,20 +171,20 @@ namespace NetEFCore.Test.Service
         }
 
         [Fact]
-        public async Task ShouldDontDeletePessoaFisicaWhenPessoaNotExists()
+        public async Task ShouldDontDeletePessoaJuridicaWhenPessoaNotExists()
         {
             #region Arrange
 
-            var entity = new PessoaFisica()
+            var entity = new PessoaJuridica()
             {
                 Name = "Name",
-                Cpf = "1",
-                BirthDate = new DateTime(1980, 1, 1)
+                Cnpj = "1",
+                RegisterDate = new DateTime(1980, 1, 1)
             };
 
             var unitOfWork = GetUnitOfWork();
 
-            var service = new PessoaFisicaService(unitOfWork);
+            var service = new PessoaJuridicaService(unitOfWork);
 
             #endregion
 
@@ -204,20 +204,20 @@ namespace NetEFCore.Test.Service
         }
 
         [Fact]
-        public async Task ShouldGetPessoaFisicaWhenPayloadIsValid()
+        public async Task ShouldGetPessoaJuridicaWhenPayloadIsValid()
         {
             #region Arrange
 
-            var entity = new PessoaFisica()
+            var entity = new PessoaJuridica()
             {
                 Name = "Name",
-                Cpf = "1",
-                BirthDate = new DateTime(1980, 1, 1)
+                Cnpj = "1",
+                RegisterDate = new DateTime(1980, 1, 1)
             };
 
             var unitOfWork = GetUnitOfWork();
 
-            var service = new PessoaFisicaService(unitOfWork);
+            var service = new PessoaJuridicaService(unitOfWork);
 
             #endregion
 
@@ -235,27 +235,27 @@ namespace NetEFCore.Test.Service
             Assert.Equal(StatusCodes.Status200OK, result.HttpStatusCode);
             Assert.True(entity.Id > 0);
             Assert.Equal(entity.Name, result.Data?.Name);
-            Assert.Equal(entity.Cpf, result.Data?.Cpf);
-            Assert.Equal(entity.BirthDate, result.Data?.BirthDate);
+            Assert.Equal(entity.Cnpj, result.Data?.Cnpj);
+            Assert.Equal(entity.RegisterDate, result.Data?.RegisterDate);
 
             #endregion
         }
 
         [Fact]
-        public async Task ShouldDontGetPessoaFisicaWhenPessoaNotExists()
+        public async Task ShouldDontGetPessoaJuridicaWhenPessoaNotExists()
         {
             #region Arrange
 
-            var entity = new PessoaFisica()
+            var entity = new PessoaJuridica()
             {
                 Name = "Name",
-                Cpf = "1",
-                BirthDate = new DateTime(1980, 1, 1)
+                Cnpj = "1",
+                RegisterDate = new DateTime(1980, 1, 1)
             };
 
             var unitOfWork = GetUnitOfWork();
 
-            var service = new PessoaFisicaService(unitOfWork);
+            var service = new PessoaJuridicaService(unitOfWork);
 
             #endregion
 
@@ -275,20 +275,20 @@ namespace NetEFCore.Test.Service
         }
 
         [Fact]
-        public async Task ShouldListPessoaFisicaWhenPayloadIsValid()
+        public async Task ShouldListPessoaJuridicaWhenPayloadIsValid()
         {
             #region Arrange
 
-            var entity = new PessoaFisica()
+            var entity = new PessoaJuridica()
             {
                 Name = "Name",
-                Cpf = "1",
-                BirthDate = new DateTime(1980, 1, 1)
+                Cnpj = "1",
+                RegisterDate = new DateTime(1980, 1, 1)
             };
 
             var unitOfWork = GetUnitOfWork();
 
-            var service = new PessoaFisicaService(unitOfWork);
+            var service = new PessoaJuridicaService(unitOfWork);
 
             #endregion
 
@@ -309,32 +309,6 @@ namespace NetEFCore.Test.Service
             Assert.False(result.HasError);
             Assert.Equal(StatusCodes.Status200OK, result.HttpStatusCode);
             Assert.Equal(2, result.Data?.Count());
-            
-            #endregion
-        }
-
-        [Fact]
-        public async Task ShouldDontListPessoaFisicaWhenPessoaIsEmpty()
-        {
-            #region Arrange
-
-            var unitOfWork = GetUnitOfWork();
-
-            var service = new PessoaFisicaService(unitOfWork);
-
-            #endregion
-
-            #region Act
-
-            var result = await service.ListAsync();
-
-            #endregion
-
-            #region Assert
-
-            Assert.True(result.HasError);
-            Assert.Equal(StatusCodes.Status404NotFound, result.HttpStatusCode);
-            Assert.NotNull(result.ErrorMessage);
 
             #endregion
         }

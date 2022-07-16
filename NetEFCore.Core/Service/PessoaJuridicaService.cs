@@ -52,7 +52,7 @@ namespace NetEFCore.Core.Service
         {
             var pessoas = await _unitOfWork.PessoaJuridicaRepository.ListAsync();
 
-            if (pessoas == default)
+            if (!pessoas.Any())
             {
                 return ServiceResponse<IEnumerable<PessoaJuridica>>.AsNotFound("Empty list");
             }
