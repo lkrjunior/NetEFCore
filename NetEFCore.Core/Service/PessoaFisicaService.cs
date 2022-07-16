@@ -14,7 +14,7 @@ namespace NetEFCore.Core.Service
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<ServiceResponse<PessoaFisica>> Delete(int id)
+        public async Task<ServiceResponse<PessoaFisica>> DeleteAsync(int id)
         {
             var pessoa = await _unitOfWork.PessoaFisicaRepository.GetAsync(id);
             if (pessoa == default)
@@ -28,7 +28,7 @@ namespace NetEFCore.Core.Service
             return ServiceResponse<PessoaFisica>.AsOk(default);
         }
 
-        public async Task<ServiceResponse<PessoaFisica>> Get(int id)
+        public async Task<ServiceResponse<PessoaFisica>> GetAsync(int id)
         {
             var pessoa = await _unitOfWork.PessoaFisicaRepository.GetAsync(id);
 
@@ -40,7 +40,7 @@ namespace NetEFCore.Core.Service
             return ServiceResponse<PessoaFisica>.AsOk(pessoa);
         }
 
-        public async Task<ServiceResponse<PessoaFisica>> Insert(PessoaFisica entity)
+        public async Task<ServiceResponse<PessoaFisica>> InsertAsync(PessoaFisica entity)
         {
             await _unitOfWork.PessoaFisicaRepository.InsertAsync(entity);
             await _unitOfWork.SaveAsync();
@@ -48,7 +48,7 @@ namespace NetEFCore.Core.Service
             return ServiceResponse<PessoaFisica>.AsOk(entity);
         }
 
-        public async Task<ServiceResponse<IEnumerable<PessoaFisica>>> List()
+        public async Task<ServiceResponse<IEnumerable<PessoaFisica>>> ListAsync()
         {
             var pessoas = await _unitOfWork.PessoaFisicaRepository.ListAsync();
 
@@ -60,7 +60,7 @@ namespace NetEFCore.Core.Service
             return ServiceResponse<IEnumerable<PessoaFisica>>.AsOk(pessoas);
         }
 
-        public async Task<ServiceResponse<PessoaFisica>> Update(PessoaFisica entity)
+        public async Task<ServiceResponse<PessoaFisica>> UpdateAsync(PessoaFisica entity)
         {
             _unitOfWork.PessoaFisicaRepository.Update(entity);
             await _unitOfWork.SaveAsync();

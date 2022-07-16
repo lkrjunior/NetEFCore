@@ -20,7 +20,7 @@ public class PessoaController : ControllerBase
     [HttpGet("GetPessoaFisica")]
     public async Task<IActionResult> GetPessoaFisica(int id)
     {
-        var result = await _pessoaFisicaService.Get(id);
+        var result = await _pessoaFisicaService.GetAsync(id);
 
         if (result.HasError)
         {
@@ -33,7 +33,7 @@ public class PessoaController : ControllerBase
     [HttpGet("ListPessoaFisica")]
     public async Task<IActionResult> ListPessoaFisica()
     {
-        var result = await _pessoaFisicaService.List();
+        var result = await _pessoaFisicaService.ListAsync();
 
         if (result.HasError)
         {
@@ -46,7 +46,7 @@ public class PessoaController : ControllerBase
     [HttpDelete("DeletePessoaFisica")]
     public async Task<IActionResult> DeletePessoaFisica(int id)
     {
-        var result = await _pessoaFisicaService.Delete(id);
+        var result = await _pessoaFisicaService.DeleteAsync(id);
 
         if (result.HasError)
         {
@@ -59,7 +59,7 @@ public class PessoaController : ControllerBase
     [HttpPost("InsertPessoaFisica")]
     public async Task<IActionResult> InsertPessoaFisica(PessoaFisica pessoa)
     {
-        var result = await _pessoaFisicaService.Insert(pessoa);
+        var result = await _pessoaFisicaService.InsertAsync(pessoa);
 
         if (result.HasError)
         {
@@ -72,7 +72,7 @@ public class PessoaController : ControllerBase
     [HttpPost("UpdatePessoaFisica")]
     public async Task<IActionResult> UpdatePessoaFisica(PessoaFisica pessoa)
     {
-        var result = await _pessoaFisicaService.Update(pessoa);
+        var result = await _pessoaFisicaService.UpdateAsync(pessoa);
 
         if (result.HasError)
         {
@@ -86,7 +86,7 @@ public class PessoaController : ControllerBase
     [HttpGet("GetPessoaJuridica")]
     public async Task<IActionResult> GetPessoaJuridica(int id)
     {
-        var result = await _pessoaJuridicaService.Get(id);
+        var result = await _pessoaJuridicaService.GetAsync(id);
 
         if (result.HasError)
         {
@@ -99,7 +99,7 @@ public class PessoaController : ControllerBase
     [HttpGet("ListPessoaJuridica")]
     public async Task<IActionResult> ListPessoaJuridica()
     {
-        var result = await _pessoaJuridicaService.List();
+        var result = await _pessoaJuridicaService.ListAsync();
 
         if (result.HasError)
         {
@@ -112,7 +112,7 @@ public class PessoaController : ControllerBase
     [HttpDelete("DeletePessoaJuridica")]
     public async Task<IActionResult> DeletePessoaJuridica(int id)
     {
-        var result = await _pessoaJuridicaService.Delete(id);
+        var result = await _pessoaJuridicaService.DeleteAsync(id);
 
         if (result.HasError)
         {
@@ -125,7 +125,7 @@ public class PessoaController : ControllerBase
     [HttpPost("InsertPessoaJuridica")]
     public async Task<IActionResult> InsertPessoaJuridica(PessoaJuridica pessoa)
     {
-        var result = await _pessoaJuridicaService.Insert(pessoa);
+        var result = await _pessoaJuridicaService.InsertAsync(pessoa);
 
         if (result.HasError)
         {
@@ -138,7 +138,7 @@ public class PessoaController : ControllerBase
     [HttpPost("UpdatePessoaJuridica")]
     public async Task<IActionResult> UpdatePessoaJuridica(PessoaJuridica pessoa)
     {
-        var result = await _pessoaJuridicaService.Update(pessoa);
+        var result = await _pessoaJuridicaService.UpdateAsync(pessoa);
 
         if (result.HasError)
         {

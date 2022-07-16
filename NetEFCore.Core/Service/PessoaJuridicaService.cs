@@ -14,7 +14,7 @@ namespace NetEFCore.Core.Service
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<ServiceResponse<PessoaJuridica>> Delete(int id)
+        public async Task<ServiceResponse<PessoaJuridica>> DeleteAsync(int id)
         {
             var pessoa = await _unitOfWork.PessoaJuridicaRepository.GetAsync(id);
             if (pessoa == default)
@@ -28,7 +28,7 @@ namespace NetEFCore.Core.Service
             return ServiceResponse<PessoaJuridica>.AsOk(default);
         }
 
-        public async Task<ServiceResponse<PessoaJuridica>> Get(int id)
+        public async Task<ServiceResponse<PessoaJuridica>> GetAsync(int id)
         {
             var pessoa = await _unitOfWork.PessoaJuridicaRepository.GetAsync(id);
 
@@ -40,7 +40,7 @@ namespace NetEFCore.Core.Service
             return ServiceResponse<PessoaJuridica>.AsOk(pessoa);
         }
 
-        public async Task<ServiceResponse<PessoaJuridica>> Insert(PessoaJuridica entity)
+        public async Task<ServiceResponse<PessoaJuridica>> InsertAsync(PessoaJuridica entity)
         {
             await _unitOfWork.PessoaJuridicaRepository.InsertAsync(entity);
             await _unitOfWork.SaveAsync();
@@ -48,7 +48,7 @@ namespace NetEFCore.Core.Service
             return ServiceResponse<PessoaJuridica>.AsOk(entity);
         }
 
-        public async Task<ServiceResponse<IEnumerable<PessoaJuridica>>> List()
+        public async Task<ServiceResponse<IEnumerable<PessoaJuridica>>> ListAsync()
         {
             var pessoas = await _unitOfWork.PessoaJuridicaRepository.ListAsync();
 
@@ -60,7 +60,7 @@ namespace NetEFCore.Core.Service
             return ServiceResponse<IEnumerable<PessoaJuridica>>.AsOk(pessoas);
         }
 
-        public async Task<ServiceResponse<PessoaJuridica>> Update(PessoaJuridica entity)
+        public async Task<ServiceResponse<PessoaJuridica>> UpdateAsync(PessoaJuridica entity)
         {
             _unitOfWork.PessoaJuridicaRepository.Update(entity);
             await _unitOfWork.SaveAsync();
