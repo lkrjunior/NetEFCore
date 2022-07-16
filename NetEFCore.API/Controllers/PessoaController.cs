@@ -8,19 +8,19 @@ namespace NetEFCore.API.Controllers;
 [Route("[controller]")]
 public class PessoaController : ControllerBase
 {
-    private readonly IUnitOfWork _unitOfWork;
-    private readonly IPessoaService<PessoaFisica> _pessoaService;
+    private readonly IPessoaService<PessoaJuridica> _pessoaJuridicaService;
+    private readonly IPessoaService<PessoaFisica> _pessoaFisicaService;
 
-    public PessoaController(IUnitOfWork unitOfWork, IPessoaService<PessoaFisica> pessoaService)
+    public PessoaController(IPessoaService<PessoaFisica> pessoaFisicaService, IPessoaService<PessoaJuridica> pessoaJuridicaService)
     {
-        _unitOfWork = unitOfWork;
-        _pessoaService = pessoaService;
+        _pessoaFisicaService = pessoaFisicaService;
+        _pessoaJuridicaService = pessoaJuridicaService;
     }
 
     [HttpGet("GetPessoaFisica")]
     public async Task<IActionResult> GetPessoaFisica(int id)
     {
-        var result = await _pessoaService.Get(id);
+        var result = await _pessoaFisicaService.Get(id);
 
         if (result.HasError)
         {
@@ -33,7 +33,7 @@ public class PessoaController : ControllerBase
     [HttpGet("ListPessoaFisica")]
     public async Task<IActionResult> ListPessoaFisica()
     {
-        var result = await _pessoaService.List();
+        var result = await _pessoaFisicaService.List();
 
         if (result.HasError)
         {
@@ -46,7 +46,7 @@ public class PessoaController : ControllerBase
     [HttpDelete("DeletePessoaFisica")]
     public async Task<IActionResult> DeletePessoaFisica(int id)
     {
-        var result = await _pessoaService.Delete(id);
+        var result = await _pessoaFisicaService.Delete(id);
 
         if (result.HasError)
         {
@@ -59,7 +59,7 @@ public class PessoaController : ControllerBase
     [HttpPost("InsertPessoaFisica")]
     public async Task<IActionResult> InsertPessoaFisica(PessoaFisica pessoa)
     {
-        var result = await _pessoaService.Insert(pessoa);
+        var result = await _pessoaFisicaService.Insert(pessoa);
 
         if (result.HasError)
         {
@@ -72,7 +72,7 @@ public class PessoaController : ControllerBase
     [HttpPost("UpdatePessoaFisica")]
     public async Task<IActionResult> UpdatePessoaFisica(PessoaFisica pessoa)
     {
-        var result = await _pessoaService.Update(pessoa);
+        var result = await _pessoaFisicaService.Update(pessoa);
 
         if (result.HasError)
         {
@@ -82,64 +82,70 @@ public class PessoaController : ControllerBase
         return Ok(result.Data ?? default);
     }
 
+
     [HttpGet("GetPessoaJuridica")]
     public async Task<IActionResult> GetPessoaJuridica(int id)
     {
-        var pessoa = await _unitOfWork.PessoaJuridicaRepository.GetAsync(id);
+        var result = await _pessoaJuridicaService.Get(id);
 
-        if (pessoa == default)
+        if (result.HasError)
         {
-            return NotFound();
+            return Problem(result.ErrorMessage, HttpContext.Request.Path, result.HttpStatusCode, result.ErrorTitle);
         }
 
-        return Ok(pessoa);
+        return Ok(result.Data ?? default);
     }
 
     [HttpGet("ListPessoaJuridica")]
     public async Task<IActionResult> ListPessoaJuridica()
     {
-        var pessoas = await _unitOfWork.PessoaJuridicaRepository.ListAsync();
+        var result = await _pessoaJuridicaService.List();
 
-        if (pessoas == default)
+        if (result.HasError)
         {
-            return NotFound();
+            return Problem(result.ErrorMessage, HttpContext.Request.Path, result.HttpStatusCode, result.ErrorTitle);
         }
 
-        return Ok(pessoas);
+        return Ok(result.Data ?? default);
     }
 
     [HttpDelete("DeletePessoaJuridica")]
     public async Task<IActionResult> DeletePessoaJuridica(int id)
     {
-        var pessoa = await _unitOfWork.PessoaJuridicaRepository.GetAsync(id);
-        if (pessoa == null)
+        var result = await _pessoaJuridicaService.Delete(id);
+
+        if (result.HasError)
         {
-            return NotFound();
+            return Problem(result.ErrorMessage, HttpContext.Request.Path, result.HttpStatusCode, result.ErrorTitle);
         }
 
-        _unitOfWork.PessoaJuridicaRepository.Delete(pessoa);
-        await _unitOfWork.SaveAsync();
-
-        return Ok();
+        return Ok(result.Data ?? default);
     }
 
     [HttpPost("InsertPessoaJuridica")]
     public async Task<IActionResult> InsertPessoaJuridica(PessoaJuridica pessoa)
     {
-        await _unitOfWork.PessoaJuridicaRepository.InsertAsync(pessoa);
-        await _unitOfWork.SaveAsync();
+        var result = await _pessoaJuridicaService.Insert(pessoa);
 
-        return Ok(pessoa);
+        if (result.HasError)
+        {
+            return Problem(result.ErrorMessage, HttpContext.Request.Path, result.HttpStatusCode, result.ErrorTitle);
+        }
+
+        return Ok(result.Data ?? default);
     }
 
     [HttpPost("UpdatePessoaJuridica")]
     public async Task<IActionResult> UpdatePessoaJuridica(PessoaJuridica pessoa)
     {
-        _unitOfWork.PessoaJuridicaRepository.Update(pessoa);
-        await _unitOfWork.SaveAsync();
+        var result = await _pessoaJuridicaService.Update(pessoa);
 
-        return Ok(pessoa);
+        if (result.HasError)
+        {
+            return Problem(result.ErrorMessage, HttpContext.Request.Path, result.HttpStatusCode, result.ErrorTitle);
+        }
+
+        return Ok(result.Data ?? default);
     }
-
 }
 
