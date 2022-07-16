@@ -312,31 +312,5 @@ namespace NetEFCore.Test.Service
 
             #endregion
         }
-
-        [Fact]
-        public async Task ShouldDontListPessoaJuridicaWhenPessoaIsEmpty()
-        {
-            #region Arrange
-
-            var unitOfWork = GetUnitOfWork();
-
-            var service = new PessoaJuridicaService(unitOfWork);
-
-            #endregion
-
-            #region Act
-
-            var result = await service.ListAsync();
-
-            #endregion
-
-            #region Assert
-
-            Assert.True(result.HasError);
-            Assert.Equal(StatusCodes.Status404NotFound, result.HttpStatusCode);
-            Assert.NotNull(result.ErrorMessage);
-
-            #endregion
-        }
     }
 }
