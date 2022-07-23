@@ -32,6 +32,7 @@ static void ConfigureServices(WebApplicationBuilder builder)
     builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
     builder.Services.AddScoped<IPessoaService<PessoaFisica>, PessoaFisicaService>();
+    builder.Services.AddScoped<IPessoaService<PessoaJuridica>, PessoaJuridicaService>();
 }
 
 static void Configure(WebApplication app)
